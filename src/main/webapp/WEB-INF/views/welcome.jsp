@@ -8,8 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Strona powitalna</title>
-    <h1>Strona w budowie.</h1>
+    <h1>${welcome}</h1>
+    <p> ${inprogress}</p>
 </head>
 <body>
 
