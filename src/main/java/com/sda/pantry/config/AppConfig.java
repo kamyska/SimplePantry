@@ -1,4 +1,10 @@
 package com.sda.pantry.config;
 
-public class AppConfig {
-}
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+//@Configuration
+//@ComponentScan(basePackages = "com.sda.pantry.data")
+//public class AppConfig {
+//}
