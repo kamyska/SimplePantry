@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IngredientsRepository extends JpaRepository<Ingredient,Long> {
+
+//Ingredient findById();
 }

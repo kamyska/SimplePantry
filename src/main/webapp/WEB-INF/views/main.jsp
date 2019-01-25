@@ -6,11 +6,40 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <head>
-    <title>$Title$</title>
+    <title>Strona główna</title>
 </head>
 <body>
-$END$
+<h3> Przepisy</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Kategoria</th>
+    </tr>
+    </thead>
+    <tbody>
+<c:forEach items="${matchingRecipes}" var="recipe">
+<tr>
+    <td>${recipe.id}</td>
+    <td>${recipe.name}</td>
+    <td>${recipe.description}</td>
+    <td>${recipe.type}</td>
+
+
+</tr>
+</c:forEach>
+
+    </tbody>
+</table>
 </body>
 </html>

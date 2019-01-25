@@ -1,18 +1,33 @@
 package com.sda.pantry.data.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table (name = "ingredients")
+@Table (name = "all_ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "id_ingredient")
     private Long id;
-    @Column
+    @Column(name = "i_name")
     private String name;
-    @Column
+    @Column(name = "id_measurment")
     private Long unit;
+
+    @ManyToMany(mappedBy = "ingredientSet")
+    private Set<Recipe> recipes = new HashSet<>();
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
 
     public Long getId() {
         return id;

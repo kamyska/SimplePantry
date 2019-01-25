@@ -33,7 +33,10 @@ CREATE TABLE all_ingredients
 CREATE TABLE ingredients_recipes
     (
 		id_recipe int(4) not null,
-		id_user_ingredient int(4) not null
+		id_user_ingredient int(4) not null,
+	primary key (`id_recipe`,`id_user_ingredient`),
+	FOREIGN KEY (`id_recipe`) REFERENCES `recipes` (`id_recipe`),
+	FOREIGN KEY (`id_user_ingredient`) REFERENCES `all_ingredients` (`id_ingredient`)
 	);
     
 CREATE TABLE measurements
