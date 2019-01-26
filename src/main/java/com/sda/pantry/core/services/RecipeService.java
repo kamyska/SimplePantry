@@ -8,6 +8,7 @@ import com.sda.pantry.dto.RecipeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class RecipeService {
     }
 
     public List<RecipeDTO> getMatchingRecipes() {
-        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipes(3L);
+        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipes("Cukier puder");
 
         if (!matchingRecipes.isEmpty()) {
 
@@ -41,7 +42,7 @@ public class RecipeService {
 
             for (int i = 0; i < matchingRecipes.size(); i++) {
                 RecipeDTO recipeDTO = new RecipeDTO();
-                recipeDTO.setId(matchingRecipes.get(i).getId());
+               recipeDTO.setId(matchingRecipes.get(i).getId());
                 recipeDTO.setDescription(matchingRecipes.get(i).getDescription());
                 recipeDTO.setName(matchingRecipes.get(i).getName());
                 recipeDTO.setType(matchingRecipes.get(i).getType());
@@ -51,5 +52,8 @@ public class RecipeService {
             return recipeDTOS;
         } else return null;
     }
+
+
+
 }
 

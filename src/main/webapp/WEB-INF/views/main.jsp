@@ -21,7 +21,7 @@
 <table>
     <thead>
     <tr>
-        <th>Id</th>
+
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Kategoria</th>
@@ -30,7 +30,7 @@
     <tbody>
 <c:forEach items="${matchingRecipes}" var="recipe">
 <tr>
-    <td>${recipe.id}</td>
+
     <td>${recipe.name}</td>
     <td>${recipe.description}</td>
     <td>${recipe.type}</td>
