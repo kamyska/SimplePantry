@@ -25,10 +25,7 @@ public class RecipeService {
         this.ingredientsRepository = ingredientsRepository;
     }
 
-
     public RecipeDTO getRecipe() {
-
-
         return null;
     }
 
@@ -42,7 +39,7 @@ public class RecipeService {
 
             for (int i = 0; i < matchingRecipes.size(); i++) {
                 RecipeDTO recipeDTO = new RecipeDTO();
-               recipeDTO.setId(matchingRecipes.get(i).getId());
+                recipeDTO.setId(matchingRecipes.get(i).getId());
                 recipeDTO.setDescription(matchingRecipes.get(i).getDescription());
                 recipeDTO.setName(matchingRecipes.get(i).getName());
                 recipeDTO.setType(matchingRecipes.get(i).getType());
@@ -50,10 +47,25 @@ public class RecipeService {
                 recipeDTOS.add(recipeDTO);
             }
             return recipeDTOS;
-        } else return null;
+        } else {
+            List<Recipe> matchingRecipesCategory = recipesRepository.findMatchingRecipesWithCategory(name);
+            if (!matchingRecipesCategory.isEmpty()) {
+
+                List<RecipeDTO> recipeDTOS = new ArrayList<>();
+
+                for (int i = 0; i < matchingRecipesCategory.size(); i++) {
+                    RecipeDTO recipeDTO = new RecipeDTO();
+                    recipeDTO.setId(matchingRecipesCategory.get(i).getId());
+                    recipeDTO.setDescription(matchingRecipesCategory.get(i).getDescription());
+                    recipeDTO.setName(matchingRecipesCategory.get(i).getName());
+                    recipeDTO.setType(matchingRecipesCategory.get(i).getType());
+
+                    recipeDTOS.add(recipeDTO);
+                }
+                return recipeDTOS;
+            }
+        }
+        return null;
     }
-
-
-
 }
 

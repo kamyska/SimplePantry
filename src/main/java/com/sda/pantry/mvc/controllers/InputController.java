@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/new")
 public class InputController {
     private RecipeService recipeService;
 
@@ -20,7 +22,7 @@ public class InputController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/new")
+    @GetMapping
     public String prepareForm(Model model) {
         InputWord inputWord = new InputWord();
         model.addAttribute("inputWord", inputWord);
@@ -28,7 +30,7 @@ public class InputController {
         return "input";
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public String submitForm(Model model, @ModelAttribute InputWord inputWord) {
       //  model.addAttribute("name", ingredient.getName());
         List<RecipeDTO> matchingRecipes = recipeService.getMatchingRecipes(inputWord.getName());
