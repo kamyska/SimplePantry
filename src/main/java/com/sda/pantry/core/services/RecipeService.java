@@ -34,7 +34,7 @@ public class RecipeService {
 
     public List<RecipeDTO> getMatchingRecipes(String name) {
 
-        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipesWithCategory(name);
+        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipesWithIngredientName(name);
 
         if (!matchingRecipes.isEmpty()) {
 
