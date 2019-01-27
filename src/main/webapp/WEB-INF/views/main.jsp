@@ -30,7 +30,7 @@
     <tbody>
 <c:forEach items="${matchingRecipes}" var="recipe">
 <tr>
-
+<td>${name}</td>
     <td>${recipe.name}</td>
     <td>${recipe.description}</td>
     <td>${recipe.type}</td>

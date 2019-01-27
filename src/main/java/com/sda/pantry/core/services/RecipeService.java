@@ -1,6 +1,7 @@
 package com.sda.pantry.core.services;
 
 
+import com.sda.pantry.data.model.Ingredient;
 import com.sda.pantry.data.model.Recipe;
 import com.sda.pantry.data.repositories.IngredientsRepository;
 import com.sda.pantry.data.repositories.RecipesRepository;
@@ -33,8 +34,9 @@ public class RecipeService {
         return null;
     }
 
-    public List<RecipeDTO> getMatchingRecipes() {
-        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipes("Cukier puder");
+    public List<RecipeDTO> getMatchingRecipes(String name) {
+
+        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipes(name);
 
         if (!matchingRecipes.isEmpty()) {
 
