@@ -1,11 +1,11 @@
+
+
 DELETE FROM users;
 DELETE FROM recipes;
 DELETE FROM recipe_type;
 DELETE FROM all_ingredients;
 DELETE FROM measurements;
 DELETE FROM ingredients_recipes;
-
-
 
 INSERT INTO users VALUES (1, 'MarekCieplica@gmail.com', 'Marek', 'Marek');
 INSERT INTO users VALUES (2, 'MariaDluga@gmail.com', 'Maria', 'Maria');
@@ -50,29 +50,7 @@ Miód
 
 ulubiony rodzaj miodu, może być skrystalizowany, ten również zachowuje cenne właściwości Wykonanie
 Przygotowanie naleśników rozpoczynamy od wyrobienia ciasta. Będzie potrzebne naczynie, najlepiej misa. Wybijamy jajka i dodajemy kolejno pozostałe składniki a całość dobrze ubijamy, najlepiej mikserem ale trzepaczka również będzie dobra. Gdy ciasto będzie równej konsystencji i bez grudek rozlewamy je na rozgrzanej patelni z odrobiną tłuszczu, tutaj świetnie sprawdza się patelnia teflonowa. Naleśniki smażymy po obu stronach na złoto. Podajemy polane miodem, ale uwaga, należy zaczekać aż przestygną, wysoka temperatura jest szkodliwa dla miodu i niszczy jego dobroczynne składniki. ', 2);
-INSERT INTO recipes VALUES (3, 'Karpatka', '
-125 g masła
-1 szklanka wody
-1 szklanka mąki
-5 małych lub średnich jajek
-1 łyżeczka proszku do pieczenia
-KREM
-2 budynie waniliowe bez cukru (każdy po 40 g)
-1/4 szklanki cukru
-750 ml mleka
-200 g miękkiego masła
-ORAZ
-cukier puder do posypania
-masło i mąka do formy CIASTO
-Masło roztopić w garnku, dodać wodę i zagotować. Wsypać mąkę i przez chwilę ucierać drewnianą łyżką aż powstanie gęsta i gładka masa.
-Przełożyć do miski i ostudzić. Dodać jajka, proszek do pieczenia, całość zmiksować na gładką masę. Ciasto podzielić na 2 części.
-Piekarnik nagrzać do 200 stopni C (góra i dół bez termoobiegu). Dużą prostokątną formę o wymiarach 25 x 36 cm posmarować masłem i posypać mąką.
-Jedną część ciasta wyłożyć łyżką na blachę, następnie za pomocą płaskiej łopatki (np. silikonowej), rozprowadzić ciasto po blaszce. Łopatkę co chwilę wkładać do ciepłej wody aby ciasto za bardzo się nie kleiło. Piec przez 20 - 25 minut na złoty kolor. W trakcie pieczenia nie otwierać piekarnika bo ciasto opadnie. Uwaga: w mniejszych foremkach ciasto będzie potrzebowało dłuższego pieczenia!
-Po upieczeniu wyjąć z piekarnika, odczekać kilka minut, zdjąć placek z blaszki, umyć ją i osuszyć, powtórzyć pieczenie drugiego placka.
-MASA
-Ugotować budynie: w szklance mleka rozprowadzić proszki budyniowe i cukier, resztę mleka dobrze zagotować, wlać mleko z rozpuszczonym proszkiem i mieszać aż budyń będzie miał gładką konsystencję. Następnie gotować budyń przez ok. 1 - 2 minuty aż zacznie bulgotać. Wówczas odstawić z ognia i ostudzić. W trakcie studzenia co chwilę zamieszać aby nie zrobił się kożuch.
-Miękkie masło ubijać mikserem przez ok. 2 minuty, aż będzie bardziej napuszone, następnie dodając po łyżce ostudzony budyń ubijać dalej na puszystą i jasną masę.
-Powstały krem rozsmarować na jednej części ciasta (na pofalowanej stronie), przykryć drugim plackiem. Odstawić bez przykrycia w chłodne miejsce na 1 godzinę. Przed podaniem posypać cukrem pudrem. Ciasto jest już gotowe do podania.', 1);
+INSERT INTO recipes VALUES (3, 'Karpatka', 'https://www.kwestiasmaku.com/przepis/karpatka', 1);
 
 INSERT INTO recipe_type VALUES (1, 'Deser');
 INSERT INTO recipe_type VALUES (2, 'Obiad');

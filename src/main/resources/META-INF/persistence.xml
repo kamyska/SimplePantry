@@ -4,11 +4,11 @@
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="spizarnia_new">
+    <persistence-unit name="pantry">
 
         <properties>
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/spizarnia_new?createDatabaseIfNotExist=true&amp;serverTimezone=UTC"/>
+                      value="jdbc:mysql://localhost:3306/pantry?createDatabaseIfNotExist=true&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/initdata.sql"/>

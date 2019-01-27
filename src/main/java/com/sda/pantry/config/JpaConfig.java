@@ -19,7 +19,7 @@ public class JpaConfig {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean entityManagerFactory = new LocalEntityManagerFactoryBean();
-        entityManagerFactory.setPersistenceUnitName("spizarnia_new");
+        entityManagerFactory.setPersistenceUnitName("pantry");
         return entityManagerFactory;
     }
 

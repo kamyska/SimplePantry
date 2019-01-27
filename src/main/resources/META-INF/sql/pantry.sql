@@ -1,7 +1,7 @@
-drop database if exists spizarnia_new;
-CREATE DATABASE spizarnia_new CHARACTER SET utf8
+drop database if exists pantry;
+CREATE DATABASE pantry CHARACTER SET utf8
 	COLLATE utf8_general_ci;
-USE spizarnia_new;
+USE pantry;
 CREATE TABLE users
 	(
 		id int(4) not null auto_increment primary key,

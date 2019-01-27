@@ -2,6 +2,7 @@ package com.sda.pantry.mvc.controllers;
 
 import com.sda.pantry.core.services.RecipeService;
 import com.sda.pantry.data.model.Ingredient;
+import com.sda.pantry.dto.InputWord;
 import com.sda.pantry.dto.RecipeDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +22,16 @@ public class InputController {
 
     @GetMapping("/new")
     public String prepareForm(Model model) {
-        Ingredient ingredient = new Ingredient();
-        model.addAttribute("ingredient", ingredient);
+        InputWord inputWord = new InputWord();
+        model.addAttribute("inputWord", inputWord);
 
         return "input";
     }
 
     @PostMapping("/new")
-    public String submitForm(Model model, @ModelAttribute Ingredient ingredient) {
+    public String submitForm(Model model, @ModelAttribute InputWord inputWord) {
       //  model.addAttribute("name", ingredient.getName());
-        List<RecipeDTO> matchingRecipes = recipeService.getMatchingRecipes(ingredient.getName());
+        List<RecipeDTO> matchingRecipes = recipeService.getMatchingRecipes(inputWord.getName());
         model.addAttribute("matchingRecipes", matchingRecipes);
         return "main";
     }

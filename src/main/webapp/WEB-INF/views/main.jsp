@@ -14,6 +14,8 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <head>
+    <jsp:useBean id="CategoryFinder" class="com.sda.pantry.dto.CategoryFinder"/>
+
     <title>Strona główna</title>
 </head>
 <body>
@@ -21,7 +23,6 @@
 <table>
     <thead>
     <tr>
-
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Kategoria</th>
@@ -30,10 +31,9 @@
     <tbody>
 <c:forEach items="${matchingRecipes}" var="recipe">
 <tr>
-<td>${name}</td>
     <td>${recipe.name}</td>
     <td>${recipe.description}</td>
-    <td>${recipe.type}</td>
+    <td> <c:out value="${CategoryFinder.translateCategory(recipe.type)}" /></td>
 
 
 </tr>

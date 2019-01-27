@@ -1,7 +1,6 @@
 package com.sda.pantry.core.services;
 
 
-import com.sda.pantry.data.model.Ingredient;
 import com.sda.pantry.data.model.Recipe;
 import com.sda.pantry.data.repositories.IngredientsRepository;
 import com.sda.pantry.data.repositories.RecipesRepository;
@@ -9,7 +8,6 @@ import com.sda.pantry.dto.RecipeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +34,7 @@ public class RecipeService {
 
     public List<RecipeDTO> getMatchingRecipes(String name) {
 
-        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipes(name);
+        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipesWithCategory(name);
 
         if (!matchingRecipes.isEmpty()) {
 

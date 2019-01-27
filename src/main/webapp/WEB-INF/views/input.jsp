@@ -20,19 +20,21 @@
 </head>
 <body>
 
-<h3>Podaj składnik do wyszukania</h3>
+<h3>Wyszukiwarka przepisów</h3>
 <form:form method="POST"
-           action="/new" modelAttribute="ingredient">
-
-    <table>
-        <tr>
-            <div><td><form:label path="name">Name</form:label></td>
-                <td><form:input path="name"/></td></div>
+           action="/new" modelAttribute="inputWord">
+<div>
+    <fieldset>
+        <legend> Podaj posiadane składniki lub kategorię przepisu</legend>
+          <tr>
+            <td><form:label path="name">Np. mleko, makaron, obiad, deser</form:label></td>
+            <td><form:input path="name"/></td>
         </tr>
 
-            <td><input type="submit" value="Submit"/></td>
+            <td><input type="submit" value="Szukaj"/></td>
         </tr>
-    </table>
+    </fieldset>
+</div>
 </form:form>
 </body>
 </html>
