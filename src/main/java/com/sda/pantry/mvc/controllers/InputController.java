@@ -27,7 +27,7 @@ public class InputController {
         InputWord inputWord = new InputWord();
         model.addAttribute("inputWord", inputWord);
 
-        return "input";
+        return "index";
     }
 
     @PostMapping
@@ -38,15 +38,5 @@ public class InputController {
         return "main";
     }
 
-//
-//    @GetMapping("/new")
-//    public String prepareMainPage(Model model, ) {
-//
-////
-////    List<RecipeDTO> matchingRecipes = recipeService.getMatchingRecipes();
-////    model.addAttribute("matchingRecipes", matchingRecipes);
-//
-//        return "redirect:/main";
-//    }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/users")
 public class HomeController {
 
     private UserService userService;
@@ -36,7 +36,7 @@ public class HomeController {
         model.addAttribute("inprogress", "Strona w budowie");
 
       model.addAttribute("users", userDTOS);
-        return "index";
+        return "home";
     }
 
 

@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -29,43 +28,54 @@ public class RecipeService {
         return null;
     }
 
-    public List<RecipeDTO> getMatchingRecipes(String name) {
+    public List<RecipeDTO> getMatchingRecipes(String string) {
 
-        List<Recipe> matchingRecipes = recipesRepository.findMatchingRecipesWithIngredientName(name);
+        List<String> stringList = convertStringToList(string);
 
-        if (!matchingRecipes.isEmpty()) {
-
-            List<RecipeDTO> recipeDTOS = new ArrayList<>();
-
-            for (int i = 0; i < matchingRecipes.size(); i++) {
-                RecipeDTO recipeDTO = new RecipeDTO();
-                recipeDTO.setId(matchingRecipes.get(i).getId());
-                recipeDTO.setDescription(matchingRecipes.get(i).getDescription());
-                recipeDTO.setName(matchingRecipes.get(i).getName());
-                recipeDTO.setType(matchingRecipes.get(i).getType());
-
-                recipeDTOS.add(recipeDTO);
-            }
-            return recipeDTOS;
+        Set<Recipe> matchingRecipesWithIngredientName = new HashSet<>();
+        Set<Recipe> matchingRecipesCategory = new HashSet<>();
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
+        for (String word : stringList) {
+            matchingRecipesWithIngredientName.addAll(recipesRepository.findMatchingRecipesWithIngredientName(word));
+            matchingRecipesCategory.addAll(recipesRepository.findMatchingRecipesWithCategory(word));
+        }
+        if (!matchingRecipesWithIngredientName.isEmpty()) {
+            return getRecipeDTOSList(matchingRecipesWithIngredientName, recipeDTOS);
         } else {
-            List<Recipe> matchingRecipesCategory = recipesRepository.findMatchingRecipesWithCategory(name);
+
             if (!matchingRecipesCategory.isEmpty()) {
-
-                List<RecipeDTO> recipeDTOS = new ArrayList<>();
-
-                for (int i = 0; i < matchingRecipesCategory.size(); i++) {
-                    RecipeDTO recipeDTO = new RecipeDTO();
-                    recipeDTO.setId(matchingRecipesCategory.get(i).getId());
-                    recipeDTO.setDescription(matchingRecipesCategory.get(i).getDescription());
-                    recipeDTO.setName(matchingRecipesCategory.get(i).getName());
-                    recipeDTO.setType(matchingRecipesCategory.get(i).getType());
-
-                    recipeDTOS.add(recipeDTO);
-                }
-                return recipeDTOS;
+                return getRecipeDTOSList(matchingRecipesCategory, recipeDTOS);
             }
         }
         return null;
+    }
+
+    private List<RecipeDTO> getRecipeDTOSList(Set<Recipe> recipeSet, List<RecipeDTO> recipeDTOS) {
+        for (Recipe recipe:recipeSet) {
+            RecipeDTO recipeDTO = new RecipeDTO();
+
+            recipeDTO.setId(recipe.getId());
+            recipeDTO.setDescription(recipe.getDescription());
+            recipeDTO.setName(recipe.getName());
+            recipeDTO.setType(recipe.getType());
+            recipeDTOS.add(recipeDTO);
+        }
+        return recipeDTOS;
+        }
+
+
+
+    private List<String> convertStringToList(String string) {
+        String cleanString = string.replaceAll("[,.;/:_]", " ");
+        List<String> strings = Arrays.asList(cleanString.split(" "));
+        List<String> convertedWords = new ArrayList<>();
+        for (String word : strings) {
+            word.trim();
+            if (word.length()!=0){
+                convertedWords.add(word);
+            }
+        }
+        return convertedWords;
     }
 }
 
