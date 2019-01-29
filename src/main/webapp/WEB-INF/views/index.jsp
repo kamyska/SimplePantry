@@ -27,7 +27,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 <!-- Signup Form -->
 <form:form method="POST"
-		   action="/new" modelAttribute="inputWord">
+		   action="/" modelAttribute="inputWord">
 	<form:input path="name"/>
 	<form:label path="name">Np. mleko, makaron, obiad, deser</form:label>
 	<input type="submit" value="Szukaj">

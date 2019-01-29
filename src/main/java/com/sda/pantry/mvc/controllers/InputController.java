@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/new")
+@RequestMapping("/")
 public class InputController {
     private RecipeService recipeService;
 
