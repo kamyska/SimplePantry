@@ -11,7 +11,7 @@ import java.util.List;
 public interface IngredientsRepository extends JpaRepository<Ingredient,Long> {
 
 
-    @Query(nativeQuery = true, value ="select ai.* from all_ingredients ai join ingredients_recipes ir on ir.id_user_ingredient=ai.id_ingredient join recipes r on r.id_recipe=ir.id_recipe where r.id_recipe = 10")
+    @Query(nativeQuery = true, value ="select ai.* from all_ingredients ai join ingredients_recipes ir on ir.id_user_ingredient=ai.id_ingredient join recipes r on r.id_recipe=ir.id_recipe where r.r_name=?1")
     List<Ingredient> findAllIngredientsForRecipe(String recipe);
 //Ingredient findById();
 }

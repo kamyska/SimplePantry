@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -30,29 +28,25 @@ public class RecipeService {
         return null;
     }
 
-    public List<RecipeDTO> getMatchingRecipes(String string) {
 
-        List<String> stringList = convertStringToList(string);
-
-//        Set<Recipe> matchingRecipesWithIngredientName = new HashSet<>();
-
-        List<RecipeDTO> recipeDTOS = new ArrayList<>();
-        List<List<Recipe>> listOfLists = new ArrayList<>();
-        for (String word : stringList) {
-
-//            matchingRecipesWithIngredientName.addAll(recipesRepository.findMatchingRecipesWithIngredientName(word));
-            List<Recipe> matchingRecipesCategory = recipesRepository.findMatchingRecipesWithCategory(word);
-            List<Recipe> matchingWithOneIngredient = recipesRepository.findMatchingRecipesWithIngredientName(word);
-            if (!matchingRecipesCategory.isEmpty()) {
-                listOfLists.add(matchingRecipesCategory);
-            }
-            if (!matchingWithOneIngredient.isEmpty()) {
-                listOfLists.add(matchingWithOneIngredient);
-            }
+    public List<RecipeDTO> getAlmostMatchingRecipes(String string) {
+        List<List<Recipe>> listOfLists = getListOfAllMatches(string);
+        Set<Recipe> recipeSet = new HashSet<>();
+        for (int i = 0; i <listOfLists.size() ; i++) {
+           recipeSet.addAll(listOfLists.get(i));
         }
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
+        List<Recipe> recipeList = new ArrayList<>();
+        recipeList.addAll(recipeSet);
+        return getRecipeDTOSList(recipeList, recipeDTOS);
+    }
+
+    public List<RecipeDTO> getMatchingRecipes(String string) {
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
+        List<List<Recipe>> listOfLists = getListOfAllMatches(string);
 
         if (listOfLists.isEmpty()) {
-return null;
+                return null;
         } else {
             List<Recipe> tempList = listOfLists.get(0);
             if (listOfLists.size() == 1) {
@@ -69,6 +63,25 @@ return null;
         }
         return null;
     }
+
+    private List<List<Recipe>> getListOfAllMatches(String string) {
+        List<String> stringList = convertStringToList(string);
+
+
+        List<List<Recipe>> listOfLists = new ArrayList<>();
+        for (String word : stringList) {
+            List<Recipe> matchingRecipesCategory = recipesRepository.findMatchingRecipesWithCategory(word);
+            List<Recipe> matchingWithOneIngredient = recipesRepository.findMatchingRecipesWithIngredientName(word);
+            if (!matchingRecipesCategory.isEmpty()) {
+                listOfLists.add(matchingRecipesCategory);
+            }
+            if (!matchingWithOneIngredient.isEmpty()) {
+                listOfLists.add(matchingWithOneIngredient);
+            }
+        }
+        return listOfLists;
+    }
+
 
     private List<RecipeDTO> getRecipeDTOSList(List<Recipe> recipeList, List<RecipeDTO> recipeDTOS) {
         for (Recipe recipe : recipeList) {
