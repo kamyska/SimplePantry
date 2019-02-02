@@ -21,6 +21,7 @@
 <header id="header">
     Przepisy
 </header>
+<div>
 <table>
     <thead>
     <tr>
@@ -31,20 +32,40 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${matchingRecipes}" var="recipe" varStatus="loop">
-<tr>
-    <td>${recipe.name}</td>
-    <td>${recipe.description}</td>
-    <td> <c:out value="${CategoryFinder.translateCategory(recipe.type)}" /></td>
-    <td>
-        tu będą składniki przepisu
-    </td>
-</tr>
-    </c:forEach>
+    <%--<c:forEach items="${matchingRecipes}" var="recipe">--%>
+<%--<tr>--%>
+    <%--<td>${recipe.name}</td>--%>
+    <%--<td>${recipe.description}</td>--%>
+    <%--<td> <c:out value="${CategoryFinder.translateCategory(recipe.type)}" /></td>--%>
+    <%--<td>--%>
+
+    <%--</c:forEach>--%>
+    <% List<RecipeDTO> matchingRecipes = (List<RecipeDTO>) request.getAttribute("matchingRecipes");
+        for (int i = 0; i < matchingRecipes.size(); i++) {
+    %>
+    <tr>
+        <td><%= matchingRecipes.get(i).getName()%>
+        </td>
+        <td><%=matchingRecipes.get(i).getDescription()%>
+        </td>
+        <td><%=CategoryFinder.translateCategory(matchingRecipes.get(i).getType())%>
+        </td>
+        <td>
+            <ul><%List<List<IngredientDTO>> matchingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForMatchingRecipes");
+                for (int j = 0; j < matchingIngredients.get(i).size(); j++) {%>
+                <li><%=matchingIngredients.get(i).get(j).getName()%>  </li>
+
+                <% } %>
+            </ul>
+        </td>
+        <%}%>
+    </tr>
+
     </tbody>
 </table>
+    </div>
 -----------------------
-<table>
+<div><table>
     <thead>
     <tr>
         <th>Nazwa</th>
@@ -66,7 +87,7 @@
     <td><%=CategoryFinder.translateCategory(almostMatchingRecipes.get(i).getType())%>
     </td>
     <td>
-        <ul><%List<List<IngredientDTO>> missingIngredients = (List<List<IngredientDTO>>) request.getAttribute("missingIngredients");
+        <ul><%List<List<IngredientDTO>> missingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForNotMatchingRecipes");
             for (int j = 0; j < missingIngredients.get(i).size(); j++) {%>
             <li><%=missingIngredients.get(i).get(j).getName()%>  </li>
 
@@ -80,7 +101,7 @@
     </c:otherwise>
     </c:choose>
     </tbody>
-</table>
+</table></div>
 
 
 <footer id="footer">

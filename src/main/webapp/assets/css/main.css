@@ -23,7 +23,12 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+}
+div {
+	overflow-y: scroll;
+	position: absolute;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -49,6 +54,7 @@ blockquote, q {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	overflow: scroll;
 }
 
 body {
@@ -78,9 +84,6 @@ input, select, textarea {
 		width: device-width;
 	}
 
-	body {
-		-ms-overflow-style: scrollbar;
-	}
 
 	@media screen and (max-width: 480px) {
 
@@ -101,10 +104,11 @@ input, select, textarea {
 	html, body {
 		height: 100%;
 		overflow-x: hidden;
+		overflow-y: scroll;
 		width: 100%;
 	}
 
-		@media screen and (max-height: 640px) {
+		@media screen and (max-height: 1280px) {
 
 			html, body {
 				height: auto;
@@ -577,7 +581,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: disc;
+		list-style: square;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}

@@ -40,9 +40,11 @@ public class InputController {
         List<RecipeDTO> matchingRecipes = recipeService.getMatchingRecipes(inputWord.getName());
         List<RecipeDTO> almostMatchingRecipes = recipeService.getAlmostMatchingRecipes(inputWord.getName());
 
-        List<List<IngredientDTO>> missingIngredients = ingredientService.getAllMissingIngredients(almostMatchingRecipes);
+        List<List<IngredientDTO>> ingredientsForNotMatchingRecipes = ingredientService.getAllMissingIngredients(almostMatchingRecipes);
+        List<List<IngredientDTO>> ingredientsForMatchingRecipes = ingredientService.getAllMissingIngredients(almostMatchingRecipes);
 
-        model.addAttribute("missingIngredients", missingIngredients);
+        model.addAttribute("ingredientsForMatchingRecipes", ingredientsForMatchingRecipes);
+        model.addAttribute("ingredientsForNotMatchingRecipes", ingredientsForMatchingRecipes);
         model.addAttribute("matchingRecipes", matchingRecipes);
         model.addAttribute("almostMatchingRecipes", almostMatchingRecipes);
         return "result";
