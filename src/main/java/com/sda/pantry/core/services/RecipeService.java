@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @Transactional
@@ -32,26 +34,44 @@ public class RecipeService {
 
         List<String> stringList = convertStringToList(string);
 
-        Set<Recipe> matchingRecipesWithIngredientName = new HashSet<>();
-        Set<Recipe> matchingRecipesCategory = new HashSet<>();
-        List<RecipeDTO> recipeDTOS = new ArrayList<>();
-        for (String word : stringList) {
-            matchingRecipesWithIngredientName.addAll(recipesRepository.findMatchingRecipesWithIngredientName(word));
-            matchingRecipesCategory.addAll(recipesRepository.findMatchingRecipesWithCategory(word));
-        }
-        if (!matchingRecipesWithIngredientName.isEmpty()) {
-            return getRecipeDTOSList(matchingRecipesWithIngredientName, recipeDTOS);
-        } else {
+//        Set<Recipe> matchingRecipesWithIngredientName = new HashSet<>();
 
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
+        List<List<Recipe>> listOfLists = new ArrayList<>();
+        for (String word : stringList) {
+
+//            matchingRecipesWithIngredientName.addAll(recipesRepository.findMatchingRecipesWithIngredientName(word));
+            List<Recipe> matchingRecipesCategory = recipesRepository.findMatchingRecipesWithCategory(word);
+            List<Recipe> matchingWithOneIngredient = recipesRepository.findMatchingRecipesWithIngredientName(word);
             if (!matchingRecipesCategory.isEmpty()) {
-                return getRecipeDTOSList(matchingRecipesCategory, recipeDTOS);
+                listOfLists.add(matchingRecipesCategory);
+            }
+            if (!matchingWithOneIngredient.isEmpty()) {
+                listOfLists.add(matchingWithOneIngredient);
+            }
+        }
+
+        if (listOfLists.isEmpty()) {
+return null;
+        } else {
+            List<Recipe> tempList = listOfLists.get(0);
+            if (listOfLists.size() == 1) {
+                tempList = tempList;
+            } else {
+                for (int i = 0; i < listOfLists.size(); i++) {
+                    tempList.retainAll(listOfLists.get(i));
+                }
+            }
+            if (!tempList.isEmpty()) {
+                return getRecipeDTOSList(tempList, recipeDTOS);
+            } else {
             }
         }
         return null;
     }
 
-    private List<RecipeDTO> getRecipeDTOSList(Set<Recipe> recipeSet, List<RecipeDTO> recipeDTOS) {
-        for (Recipe recipe:recipeSet) {
+    private List<RecipeDTO> getRecipeDTOSList(List<Recipe> recipeList, List<RecipeDTO> recipeDTOS) {
+        for (Recipe recipe : recipeList) {
             RecipeDTO recipeDTO = new RecipeDTO();
 
             recipeDTO.setId(recipe.getId());

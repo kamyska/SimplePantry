@@ -12,9 +12,37 @@
 </head>
 <body>
 <body class="is-preload">
+<div><h2><a href="/">Powrót do wyszukiwania</a></h2></div>
+<c:choose>
+<c:when test="${matchingRecipes==null}"><h2>Przykro nam, nie znaleziono pasujących przepisów :(</h2> </c:when>
+<c:otherwise>
 <header id="header">
     Przepisy
 </header>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <table>
     <thead>
     <tr>
@@ -24,13 +52,18 @@
     </tr>
     </thead>
     <tbody>
-<c:forEach items="${matchingRecipes}" var="recipe">
+
+            <c:forEach items="${matchingRecipes}" var="recipe">
+
 <tr>
     <td>${recipe.name}</td>
     <td>${recipe.description}</td>
     <td> <c:out value="${CategoryFinder.translateCategory(recipe.type)}" /></td>
+
 </tr>
-</c:forEach>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
     </tbody>
 </table>
 

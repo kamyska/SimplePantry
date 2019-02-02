@@ -32,13 +32,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResolver(new PathResourceResolver());
     }
 
-    @Bean
-    public ResourceBundleThemeSource themeSource() {
-        ResourceBundleThemeSource themeSource
-                = new ResourceBundleThemeSource();
-        themeSource.setDefaultEncoding("UTF-8");
-        themeSource.setBasenamePrefix("themes.");
-        return themeSource;
-    }
+//    @Bean
+//    public ResourceBundleThemeSource themeSource() {
+//        ResourceBundleThemeSource themeSource
+//                = new ResourceBundleThemeSource();
+//        themeSource.setDefaultEncoding("UTF-8");
+//        themeSource.setBasenamePrefix("themes.");
+//        return themeSource;
+//    }
 
 }
