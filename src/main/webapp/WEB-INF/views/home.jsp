@@ -32,10 +32,10 @@
     <tbody>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td>${user.id}.</td>
-            <td>${user.name}.</td>
-            <td>${user.email}.</td>
-            <td>${user.password}.</td>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.password}</td>
         </tr>
     </c:forEach>
     </tbody>
@@ -44,4 +44,3 @@
 <p> ${inprogress}</p>
 </body>
 </html>
-g

@@ -34,6 +34,18 @@ public class UserService {
         return userDTO;
     }
 
+    public UserDTO getUserByEmail(String email, String password) {
+        UserDTO userDTO = null;
+        User user = userRepository.getUserByEmailAndPassword(email, password);
+        if (user != null) {
+            userDTO = new UserDTO();
+            userDTO.setId(user.getId());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setPassword(user.getPassword());
+        }
+        return userDTO;
+    }
+
     public List<UserDTO> findAllUsers() {
         List<User> list = userRepository.findAll();
         if (!list.isEmpty()) {
@@ -52,5 +64,18 @@ public class UserService {
             return userDTOS;
         }
         return null;
+    }
+
+    public boolean checkCredentials(String email, String password) {
+        Boolean userExists = userRepository.checkIfUserExists(email, password);
+        return userExists;
+    }
+
+    public void addNewUser(String email, String password, String name){
+        userRepository.addNewUser(email, password, name);
+    }
+
+    public void deleteUser(Long id){
+        userRepository.deleteUser(id);
     }
 }

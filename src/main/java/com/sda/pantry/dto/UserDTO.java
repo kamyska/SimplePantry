@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public class UserDTO {
 
-    private String name;
-    private String password;
     private Long id;
     private String email;
+    private String password;
+    private String name;
 
     public Long getId() {
         return id;

@@ -6,6 +6,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class DispatcherConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
+        //return new Class[] {RootConfig.class, JpaConfig.class, SecurityConfig.class};
         return new Class[] {RootConfig.class, JpaConfig.class};
     }
 
