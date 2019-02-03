@@ -1,13 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Strona powitalna</title>
-    <jsp:include page="header.jsp"/>
+    <title>Użytkownicy</title>
 </head>
 <body>
-<h1>${welcome}</h1>
+<h1></h1>
 <h2>Użytkownicy</h2>
 <table>
     <thead>
@@ -31,6 +30,5 @@
     </tbody>
 </table>
 
-<p> ${inprogress}</p>
 </body>
 </html>

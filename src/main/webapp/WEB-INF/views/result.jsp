@@ -14,21 +14,23 @@
     <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
 <body class="is-preload">
-<div><h2><a href="/">Powrót do wyszukiwania</a></h2></div>
+<div><h1 align="right"> <a href="/">Powrót do wyszukiwania</a></h1></div>
+<br>
 <c:choose>
 <c:when test="${matchingRecipes==null}"><h2>Przykro nam, nie znaleziono pasujących przepisów :(</h2> </c:when>
 <c:otherwise>
 <header id="header">
-    Przepisy
+ <h1 align="center" style="color:#1cb495">  Przepisy dla Ciebie </h1>
+    <h3 >Przepisy zawierające podane przez Ciebie składniki:</h3>
 </header>
 <div>
-<table>
+<table align="center">
     <thead>
     <tr>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Kategoria</th>
-        <th> Składniki</th>
+        <th><h3 align="center">Nazwa</h3></th>
+        <th><h3 align="center">Opis</h3></th>
+        <th><h3 align="center">Kategoria</h3></th>
+        <th> <h3 align="center">Wymagane składniki</h3></th>
     </tr>
     </thead>
     <tbody>
@@ -44,16 +46,16 @@
         for (int i = 0; i < matchingRecipes.size(); i++) {
     %>
     <tr>
-        <td><%= matchingRecipes.get(i).getName()%>
+        <td align="center"><%= matchingRecipes.get(i).getName()%>
         </td>
-        <td><%=matchingRecipes.get(i).getDescription()%>
+        <td align="center"><%=matchingRecipes.get(i).getDescription()%>
         </td>
-        <td><%=CategoryFinder.translateCategory(matchingRecipes.get(i).getType())%>
+        <td align="center"><%=CategoryFinder.translateCategory(matchingRecipes.get(i).getType())%>
         </td>
-        <td>
-            <ul><%List<List<IngredientDTO>> matchingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForMatchingRecipes");
+        <td align="center">
+            <ul align="center"><%List<List<IngredientDTO>> matchingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForMatchingRecipes");
                 for (int j = 0; j < matchingIngredients.get(i).size(); j++) {%>
-                <li><%=matchingIngredients.get(i).get(j).getName()%>  </li>
+                <li align="center"><%=matchingIngredients.get(i).get(j).getName()%>  </li>
 
                 <% } %>
             </ul>
@@ -64,37 +66,42 @@
     </tbody>
 </table>
     </div>
------------------------
-<div><table>
+<br>
+<br>
+<h3>Może zainteresują Cię też przepisy:</h3>
+
+<div ><table>
     <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Kategoria</th>
-        <th>Składniki</th>
+    <tr >
+        <th><h3 align="center">Nazwa</h3></th>
+        <th><h3 align="center">Opis</h3></th>
+        <th><h3 align="center"> Kategoria</h3></th>
+        <th><h3 align="center">Wymagane składniki</h3></th>
     </tr>
     </thead>
     <tbody>
         <%--<c:forEach items="${almostMatchingRecipes}" var="recipe2" varStatus="loop">--%>
     <% List<RecipeDTO> almostMatchingRecipes = (List<RecipeDTO>) request.getAttribute("almostMatchingRecipes");
         for (int i = 0; i < almostMatchingRecipes.size(); i++) {
+            if (!matchingRecipes.contains(almostMatchingRecipes.get(i))){
     %>
         <tr>
-    <td><%= almostMatchingRecipes.get(i).getName()%>
+    <td align="center"><%= almostMatchingRecipes.get(i).getName()%>
     </td>
-    <td><%=almostMatchingRecipes.get(i).getDescription()%>
+    <td align="center"><%=almostMatchingRecipes.get(i).getDescription()%>
     </td>
-    <td><%=CategoryFinder.translateCategory(almostMatchingRecipes.get(i).getType())%>
+    <td align="center"><%=CategoryFinder.translateCategory(almostMatchingRecipes.get(i).getType())%>
     </td>
-    <td>
-        <ul><%List<List<IngredientDTO>> missingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForNotMatchingRecipes");
+    <td align="center">
+        <ul align="center"><%List<List<IngredientDTO>> missingIngredients = (List<List<IngredientDTO>>) request.getAttribute("ingredientsForNotMatchingRecipes");
             for (int j = 0; j < missingIngredients.get(i).size(); j++) {%>
-            <li><%=missingIngredients.get(i).get(j).getName()%>  </li>
+            <li align="center"><%=missingIngredients.get(i).get(j).getName()%>  </li>
 
     <% } %>
         </ul>
     </td>
-    <%}%>
+    <%}
+    }%>
     </tr>
 
 
@@ -113,7 +120,7 @@
     <%--</ul>--%>
     <ul class="copyright">
         <li>&copy; Ola i Rafał</li>
-        <li>Credits: <a href="https://github.com/kamyska">Ola</a><a href="https://github.com/barraf0">Rafał</a></li>
+        <li>Credits: <a href="https://github.com/kamyska">Ola   </a><a href="https://github.com/barraf0">   Rafał</a></li>
 
     </ul>
 </footer>

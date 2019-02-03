@@ -24,10 +24,12 @@ section, summary, time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+
 }
-div {
-	overflow-y: scroll;
-	position: absolute;
+
+span{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 article, aside, details, figcaption, figure,
@@ -54,7 +56,8 @@ blockquote, q {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	overflow: scroll;
+    width: 1280px;
+
 }
 
 body {
@@ -101,7 +104,7 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
-	html, body {
+body {
 		height: 100%;
 		overflow-x: hidden;
 		overflow-y: scroll;
@@ -581,7 +584,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: square;
+
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
@@ -1129,7 +1132,7 @@ input, select, textarea {
 		color: rgba(255, 255, 255, 0.5);
 		left: 4em;
 		opacity: 0.5;
-		position: absolute;
+		position: initial;
 	}
 
 		#footer .icons {

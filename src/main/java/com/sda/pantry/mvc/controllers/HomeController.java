@@ -36,7 +36,7 @@ public class HomeController {
         model.addAttribute("inprogress", "Strona w budowie");
 
       model.addAttribute("users", userDTOS);
-        return "home";
+        return "login";
     }
 
 

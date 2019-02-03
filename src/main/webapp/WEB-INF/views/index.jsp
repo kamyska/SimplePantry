@@ -14,12 +14,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<c:choose>
+		<c:when test="${email == null}"> Użytkownik niezalogowany </c:when>
+		<c:otherwise>
+			Witaj użytkowniku, ${email}
+			<a href="/logout"> Wyloguj się </a>
+		</c:otherwise>
+	</c:choose>
 </head>
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
-	<h1>Znajdź swój przepis!</h1>
+	<h1>Znajdź swój przepis! </h1>
 	<p>Podaj składniki, które masz w domu,</p>
 	<p>a przedstawimy Ci przepisy, które możesz z nich wykonać</p>
 
@@ -33,7 +40,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	<form:label path="name">Np. mleko, makaron, obiad, deser</form:label>
 	<input type="submit" value="Szukaj">
 </form:form>
-
+<div><h2>Albo...</h2>
+	<div><h2><a href="/login">...zaloguj się</a></h2></div>
+	<div><h2><a href="/userpanel">...założ konto</a></h2></div>
+</div>
 <!-- Footer -->
 <footer id="footer">
 	<ul class="icons">
@@ -53,3 +63,4 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 </body>
 </html>
+

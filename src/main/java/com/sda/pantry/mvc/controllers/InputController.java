@@ -44,7 +44,7 @@ public class InputController {
         List<List<IngredientDTO>> ingredientsForMatchingRecipes = ingredientService.getAllMissingIngredients(almostMatchingRecipes);
 
         model.addAttribute("ingredientsForMatchingRecipes", ingredientsForMatchingRecipes);
-        model.addAttribute("ingredientsForNotMatchingRecipes", ingredientsForMatchingRecipes);
+        model.addAttribute("ingredientsForNotMatchingRecipes", ingredientsForNotMatchingRecipes);
         model.addAttribute("matchingRecipes", matchingRecipes);
         model.addAttribute("almostMatchingRecipes", almostMatchingRecipes);
         return "result";
