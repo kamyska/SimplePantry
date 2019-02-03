@@ -45,9 +45,7 @@ public class RecipeService {
         List<RecipeDTO> recipeDTOS = new ArrayList<>();
         List<List<Recipe>> listOfLists = getListOfAllMatches(string);
 
-        if (listOfLists.isEmpty()) {
-                return null;
-        } else {
+        if (!listOfLists.isEmpty()) {
             List<Recipe> tempList = listOfLists.get(0);
             if (listOfLists.size() == 1) {
                 tempList = tempList;
@@ -58,10 +56,10 @@ public class RecipeService {
             }
             if (!tempList.isEmpty()) {
                 return getRecipeDTOSList(tempList, recipeDTOS);
-            } else {
             }
         }
-        return null;
+        List<Recipe> tempList = new ArrayList<>();
+        return getRecipeDTOSList(tempList, recipeDTOS);
     }
 
     private List<List<Recipe>> getListOfAllMatches(String string) {

@@ -17,7 +17,7 @@
 <div><h1 align="right"> <a href="/">Powrót do wyszukiwania</a></h1></div>
 <br>
 <c:choose>
-<c:when test="${matchingRecipes==null}"><h2>Przykro nam, nie znaleziono pasujących przepisów :(</h2> </c:when>
+<c:when test="${matchingRecipes.size()==0}"><h2>Przykro nam, nie znaleziono pasujących przepisów :(</h2> </c:when>
 <c:otherwise>
 <header id="header">
  <h1 align="center" style="color:#1cb495">  Przepisy dla Ciebie </h1>
@@ -66,6 +66,12 @@
     </tbody>
 </table>
     </div>
+
+</c:otherwise>
+</c:choose>
+<c:choose>
+    <c:when test="${almostMatchingRecipes.size()!=0}">
+
 <br>
 <br>
 <h3>Może zainteresują Cię też przepisy:</h3>
@@ -79,9 +85,9 @@
         <th><h3 align="center">Wymagane składniki</h3></th>
     </tr>
     </thead>
-    <tbody>
         <%--<c:forEach items="${almostMatchingRecipes}" var="recipe2" varStatus="loop">--%>
     <% List<RecipeDTO> almostMatchingRecipes = (List<RecipeDTO>) request.getAttribute("almostMatchingRecipes");
+        List<RecipeDTO> matchingRecipes = (List<RecipeDTO>) request.getAttribute("matchingRecipes");
         for (int i = 0; i < almostMatchingRecipes.size(); i++) {
             if (!matchingRecipes.contains(almostMatchingRecipes.get(i))){
     %>
@@ -104,9 +110,9 @@
     }%>
     </tr>
 
-
-    </c:otherwise>
+    </c:when>
     </c:choose>
+
     </tbody>
 </table></div>
 
